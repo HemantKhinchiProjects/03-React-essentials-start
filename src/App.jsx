@@ -6,7 +6,7 @@ import CoreConcepts from "./components/CoreConcepts";
 import TabButton from "./components/TabButton";
 
 function App() {
-  const [salectedTopic, setsalectedTopic] = useState("components");
+  const [salectedTopic, setsalectedTopic] = useState();
   function handlerClick(selectedButton) {
     // selectedButton === "Components, JSX, Props, State"
     // selectedButton === "Components"
@@ -33,24 +33,43 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onTabClicker={() => handlerClick("components")}>
+            <TabButton
+              isSelected={salectedTopic === "components"}
+              onTabClicker={() => handlerClick("components")}
+            >
               Components
             </TabButton>
-            <TabButton onTabClicker={() => handlerClick("jsx")}>JSX</TabButton>
-            <TabButton onTabClicker={() => handlerClick("props")}>
+            <TabButton
+              isSelected={salectedTopic === "jsx"}
+              onTabClicker={() => handlerClick("jsx")}
+            >
+              JSX
+            </TabButton>
+            <TabButton
+              isSelected={salectedTopic === "props"}
+              onTabClicker={() => handlerClick("props")}
+            >
               Props
             </TabButton>
-            <TabButton onTabClicker={() => handlerClick("state")}>
+            <TabButton
+              isSelected={salectedTopic === "state"}
+              onTabClicker={() => handlerClick("state")}
+            >
               State
             </TabButton>
           </menu>
-          <div id="tab-content">
-            <h3>{EXAMPLES[salectedTopic].title}</h3>
-            <p>{EXAMPLES[salectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[salectedTopic].code}</code>
-            </pre>
-          </div>
+
+          {!salectedTopic ? (
+            <p> Please select an example</p>
+          ) : (
+            <div id="tab-content">
+              <h3>{EXAMPLES[salectedTopic].title}</h3>
+              <p>{EXAMPLES[salectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[salectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
         </section>
       </main>
     </div>
