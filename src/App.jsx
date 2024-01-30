@@ -19,14 +19,9 @@ function App() {
       <main>
         <section id="core-concepts">
           <ul>
-            <CoreConcepts {...CORE_CONCEPTS[0]} />
-            <CoreConcepts {...CORE_CONCEPTS[1]} />
-            <CoreConcepts {...CORE_CONCEPTS[2]} />
-            <CoreConcepts
-              title={CORE_CONCEPTS[3].title}
-              description={CORE_CONCEPTS[3].description}
-              image={CORE_CONCEPTS[3].image}
-            />
+            {CORE_CONCEPTS.map((conceptsitem) => (
+              <CoreConcepts key={conceptsitem.title} {...conceptsitem} />
+            ))}
           </ul>
         </section>
 
